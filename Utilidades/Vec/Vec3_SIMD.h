@@ -239,6 +239,22 @@ FORCE_INLINE  Vec3<double>& Vec3<double>::operator+=(const Vec3<double>& v)
 	return *this;
 }
 
+//SIMD DOUBLE
+template <>
+FORCE_INLINE  Vec3<double>& Vec3<double>::operator-=(const Vec3<double>& v)
+{
+	std::cout << " - DOUBLE " << std::endl;
+	CHECK_VALID(*this);
+	CHECK_VALID(v);
+
+	//SIMD 256-bit Instruction 
+	__m256d* ptr_a = (__m256d*)vecUnion.vecArray; 
+    __m256d* ptr_b = (__m256d*)v.vecUnion.vecArray; 
+    _mm256_store_pd(vecUnion.vecArray, _mm256_sub_pd(*ptr_a, *ptr_b));
+	//vecUnion.vecStruct.x += v.vecUnion.vecStruct.x; vecUnion.vecStruct.y += v.vecUnion.vecStruct.y; vecUnion.vecStruct.z += v.vecUnion.vecStruct.z;
+	return *this;
+}
+
 //SIMD FLOAT
 template <>
 FORCE_INLINE  Vec3<float>& Vec3<float>::operator+=(const Vec3<float>& v)

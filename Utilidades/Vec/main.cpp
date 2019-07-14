@@ -13,6 +13,7 @@
 
 int main()
 {
+    //NewPush
     /* double a[3] __attribute__ ((aligned (16)));
     a[0] = 1.0;
     a[1] = 2.0;
@@ -43,6 +44,7 @@ int main()
 
     a += b;
     c += d;
+    c -= d;
 
     std::cout << a << '|' << c << std::endl;
  
